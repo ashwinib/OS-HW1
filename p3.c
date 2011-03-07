@@ -7,7 +7,6 @@
 #define BILLION  1000L;
 
 char* word;
-int count=0;
 
 int findText(char *string){	
 char *temp;
@@ -15,7 +14,7 @@ int count=0;
 temp=string;
 while(temp!=NULL){
 	//printf("\nLooking for * %s* in *%s*",word,temp);
-	temp=strcasestr(temp,word);
+	temp=strstr(temp,word);
 	if(temp!=NULL){
 		count++;
 		temp=&(temp[1]);
@@ -58,9 +57,9 @@ noOfBlocks=iter;count=0;
 //Decide number of blocks/threads, decide lSize=blocksize
   lSize=fSize/noOfBlocks;
   halfBufSize= fSize-(lSize*(noOfBlocks-1));
-//printf("\noverlap = %ld",-1*(long int)overlap);//DEBUG
-//printf("\n**im here**");  //DEBUG
-//printf("\nBolckSize: %ld",lSize);
+  //printf("\noverlap = %ld",-1*(long int)overlap);//DEBUG
+  //printf("\n**im here**");  //DEBUG
+  //printf("\nBolckSize: %ld",lSize);
 
 //Allocate Buffer and spawn thread
 for(i=0;i<noOfBlocks;i++){
@@ -107,9 +106,9 @@ if( clock_gettime( CLOCK_REALTIME, &stop) == -1 ) {
                 /BILLION;
     //printf( "%lf\n", accum );
 
- // printf("\nblockSize = %ld\tnoOfThread = %d \tmatchCount = %d\t time = %ld",lSize,iter,count,accum);
+  printf("\nblockSize = %ld\tnoOfThread = %d \tmatchCount = %d\t time = %ld",lSize,iter,count,accum);
 //printf("\n%d,%ld",iter,accum);
   fseek(pFile,0,SEEK_SET);
 }
-printf("\n COunt = %d ",count);
+printf("\nFinal Count = %d ",count);
 }
